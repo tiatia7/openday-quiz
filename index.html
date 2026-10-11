@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Play with Unitech</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Screen 1: Start -->
+  <section id="start-screen" class="screen">
+    <h1>Play with Unitech</h1>
+    <button id="start-btn" type="button">Let's Start</button>
+  </section>
+
+  <!-- Screen 2: Choose a question (JS fills the grid) -->
+  <section id="grid-screen" class="screen hidden">
+    <h2>Choose a Question</h2>
+    <div id="question-grid"></div>
+  </section>
+
+  <!-- Screen 3: The question -->
+  <section id="question-screen" class="screen hidden">
+    <header id="question-header">
+      <p id="question-title">Question 1</p>
+      <p id="timer">60s</p>
+    </header>
+
+    <h2 id="question-text">Fix the following bug:</h2>
+    <pre id="question-code"><code></code></pre>
+
+    <fieldset id="options">
+      <legend>Choose your answer</legend>
+
+      <label class="option">
+        <input type="radio" name="option" value="0">
+        First option
+      </label>
+
+      <label class="option">
+        <input type="radio" name="option" value="1">
+        Second option
+      </label>
+
+      <label class="option">
+        <input type="radio" name="option" value="2">
+        Third option
+      </label>
+
+      <label class="option">
+        <input type="radio" name="option" value="3">
+        Fourth option
+      </label>
+    </fieldset>
+
+    <button id="check-btn" type="button">Check your answer</button>
+  </section>
+
+  <!-- Screen 4: Results -->
+  <section id="win-screen" class="screen hidden">
+    <h2>Correct, you win!</h2>
+    <button class="back-btn" type="button">Back to questions</button>
+  </section>
+
+  <section id="lose-screen" class="screen hidden">
+    <h2>Wrong answer</h2>
+    <p>Better luck next time!</p>
+    <button class="back-btn" type="button">Back to questions</button>
+  </section>
+
+  <section id="timeup-screen" class="screen hidden">
+    <h2>Time's up!</h2>
+    <p>Sorry, you ran out of time.</p>
+    <button class="back-btn" type="button">Back to questions</button>
+  </section>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

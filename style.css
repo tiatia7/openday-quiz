@@ -1,0 +1,312 @@
+/* =====================================================
+   COLORS
+   ===================================================== */
+:root {
+  --navy:       #071D57;
+  --blue:       #0581FD;
+  --cyan:       #04C2FE;
+  --cyan-light: #9BEBFF;
+  --purple:     #B44CE0;
+  --purple-hi:  #CC66F2;
+  --text:       #FFFFFF;
+  --danger:     #FF5A5F;
+}
+
+/* =====================================================
+   BASE
+   ===================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background:
+    radial-gradient(circle at 15% 10%, rgba(180, 76, 224, 0.35) 0%, transparent 45%),
+    radial-gradient(circle at 85% 90%, rgba(5, 129, 253, 0.30) 0%, transparent 45%),
+    var(--navy);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: system-ui, "Segoe UI", Arial, sans-serif;
+}
+
+.screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Must stay AFTER .screen so it wins */
+.hidden {
+  display: none;
+}
+
+/* =====================================================
+   BUTTONS (start, check, back)
+   ===================================================== */
+#start-btn,
+#check-btn,
+.back-btn {
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  color: var(--text);
+  border: none;
+  border-radius: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 28px rgba(180, 76, 224, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+#start-btn {
+  padding: 1.1rem 3.5rem;
+  font-size: 1.5rem;
+}
+
+#check-btn,
+.back-btn {
+  padding: 1rem 2.5rem;
+  font-size: 1.4rem;
+}
+
+#start-btn:hover,
+#check-btn:hover,
+.back-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.12);
+  box-shadow: 0 12px 36px rgba(180, 76, 224, 0.55);
+}
+
+#start-btn:active,
+#check-btn:active,
+.back-btn:active {
+  transform: translateY(0);
+}
+
+#start-btn:focus-visible,
+#check-btn:focus-visible,
+.back-btn:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 4px;
+}
+
+#check-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+  box-shadow: none;
+}
+
+/* =====================================================
+   SCREEN 1: START
+   ===================================================== */
+#start-screen h1 {
+  font-size: clamp(2.8rem, 9vw, 6.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+#start-screen h1::after {
+  content: "#include <unitech>";
+  display: block;
+  margin-top: 1.5rem;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--cyan);
+}
+
+/* =====================================================
+   SCREEN 2: CHOOSE A QUESTION
+   ===================================================== */
+#grid-screen h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+#question-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  width: 100%;
+  max-width: 900px;
+}
+
+.q-btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  border: 1.5px solid rgba(4, 194, 254, 0.4);
+  border-radius: 18px;
+  padding: 1.2rem 1rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.q-btn:hover {
+  background: rgba(180, 76, 224, 0.35);
+  border-color: var(--purple-hi);
+  transform: translateY(-2px);
+}
+
+.q-btn:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
+
+.q-btn.done {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* =====================================================
+   SCREEN 3: THE QUESTION
+   ===================================================== */
+#question-screen {
+  gap: 1.5rem;
+}
+
+#question-screen > * {
+  width: 100%;
+  max-width: 900px;
+}
+
+#question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#question-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--cyan-light);
+}
+
+#timer {
+  width: 88px;
+  height: 88px;
+  display: grid;
+  place-items: center;
+  border: 4px solid var(--cyan);
+  border-radius: 50%;
+  font-size: 1.6rem;
+  font-weight: 800;
+  background: rgba(4, 194, 254, 0.1);
+}
+
+#timer.low {
+  border-color: var(--danger);
+  background: rgba(255, 90, 95, 0.15);
+}
+
+#question-text {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--text);
+}
+
+#question-code {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(4, 194, 254, 0.25);
+  border-radius: 14px;
+  padding: 1.2rem 1.5rem;
+  text-align: left;
+  direction: ltr;
+  overflow-x: auto;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 1.5rem;
+  line-height: 1.7;
+  color: #E6F7FF;
+}
+
+#options {
+  border: none;
+  min-width: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+
+#options legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.option {
+  display: block;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  padding: 1rem 1.3rem;
+  font-size: 1.5rem;
+  color: var(--text);
+  text-align: left;
+  direction: ltr;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+/* Options written in code font (output + fix the bug questions) */
+.option.mono {
+  font-family: "Consolas", "Courier New", monospace;
+}
+
+.option input {
+  position: absolute;
+  opacity: 0;
+}
+
+.option:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.option:has(input:checked) {
+  background: rgba(180, 76, 224, 0.35);
+  border-color: var(--purple-hi);
+}
+
+#check-btn {
+  width: auto;
+}
+
+/* =====================================================
+   SCREEN 4: RESULTS (light transparent tint)
+   ===================================================== */
+#win-screen h2,
+#lose-screen h2,
+#timeup-screen h2 {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 800;
+}
+
+#lose-screen p,
+#timeup-screen p {
+  font-size: 1.4rem;
+}
+
+#win-screen {
+  background: radial-gradient(circle at 50% 40%, rgba(46, 204, 113, 0.38), rgba(46, 204, 113, 0.18));
+}
+
+#lose-screen {
+  background: radial-gradient(circle at 50% 40%, rgba(255, 90, 95, 0.34), rgba(255, 90, 95, 0.16));
+}
+
+#timeup-screen {
+  background: radial-gradient(circle at 50% 40%, rgba(255, 176, 32, 0.34), rgba(255, 176, 32, 0.16));
+}
